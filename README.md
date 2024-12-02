@@ -1,0 +1,2 @@
+# bash_tech_assessment
+DATA ENGINEER TECH ASSESSMENT_IAN SPIES
