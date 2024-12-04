@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import snowflake.connector
 
 # Replace 'YOUR_NASA_API_KEY' with your actual API key
-api_key = 'XXXX'
+api_key = 'zEV8WaqAclQozMvV7r8zkXjdX6O5NLcAqvgJgtwC'
 
 # Function to fetch data for a given date range
 def fetch_data(start_date, end_date):
@@ -34,9 +34,9 @@ def fetch_data(start_date, end_date):
 
 # Load the last load date from Snowflake so as to only fetch new data
 conn = snowflake.connector.connect(
-    user='XXX',
-    password='XXX',
-    account='XXX'
+    user='IANSPIES',
+    password='Spiesawe123',
+    account='gy57703.ap-south-1.aws'
 )
 cur = conn.cursor()
 cur.execute("USE DATABASE nasa_data_2")
