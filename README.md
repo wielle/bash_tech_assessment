@@ -54,7 +54,7 @@ Ensure you have the following installed:
 •⁠  ⁠*Purpose*: Fetch asteroid data for the last 30 days.
 •⁠  ⁠*API Key*: Obtain your API key [here](https://api.nasa.gov/).
 
-*API Key used*: ⁠ zEV8WaqAclQozMvV7r8zkXjdX6O5NLcAqvgJgtwC ⁠.
+*API Key used*: ⁠ XXX ⁠.
 
 ### Batch Processing
 •⁠  ⁠*Date Calculation*: Calculated the start and end dates for the last 30 days using Python's ⁠ datetime ⁠.
