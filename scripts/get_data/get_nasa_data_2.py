@@ -1,9 +1,10 @@
 import requests
+import os
 import pandas as pd
 from datetime import datetime, timedelta
 
 # Replace 'YOUR_NASA_API_KEY' with your actual API key
-api_key = 'XXXX'
+api_key = 'zEV8WaqAclQozMvV7r8zkXjdX6O5NLcAqvgJgtwC'
 end_date = datetime.now()
 start_date = end_date - timedelta(days=30)
 
@@ -33,7 +34,16 @@ while start_date < end_date:
 
 # Normalize JSON to flat table
 df = pd.json_normalize(all_neos, sep='_')
-file_path = '/Users/spicegold/Documents/vscode/Bash Techincal Assesment/Nasa_2.csv'
-df.to_csv('nasa_data_2.csv', index=False)
 
-print("Data fetched and saved to nasa_data_2.csv")
+# Define the folder and file path
+folder_path = '/Users/spicegold/Documents/vscode/Bash Techincal Assesment/Nasa_2/data'
+file_path = os.path.join(folder_path, 'nasa_data_2.csv')
+
+# Create the directory if it doesn't exist
+os.makedirs(folder_path, exist_ok=True)
+
+# Save the DataFrame to the CSV file
+df.to_csv(file_path, index=False)
+
+print(f"Data fetched and saved to {file_path}")
+

@@ -1,16 +1,29 @@
+import os
 import snowflake.connector
 import pandas as pd
 import json
+from datetime import datetime, timedelta
+
+# Retrieve Snowflake connection details from environment variables
+user = os.getenv('SNOWFLAKE_USER')
+password = os.getenv('SNOWFLAKE_PASSWORD')
+account = os.getenv('SNOWFLAKE_ACCOUNT')
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
-    user='XXX',
-    password='XXX',
-    account='XXX'
+    user=user,
+    password=password,
+    account=account
 )
+#----------
+# #this is only in the event that data is first loaded to a file path
+#----------
+
+# Provide the absolute path to the CSV file
+csv_file_path = '/Users/spicegold/Documents/vscode/Bash Techincal Assesment/Nasa_2/data/nasa_data_2.csv' 
 
 # Load CSV into DataFrame
-df = pd.read_csv('nasa_data_2.csv')
+df = pd.read_csv(csv_file_path)
 
 # Function to extract the 'close_approach_date' from JSON
 def extract_close_approach_date(json_str):
@@ -21,6 +34,7 @@ def extract_close_approach_date(json_str):
         return None
     except (json.JSONDecodeError, KeyError, TypeError):
         return None
+#----------
 
 # Extract 'close_approach_date' without modifying the original 'close_approach_data'
 df['close_approach_date'] = df['close_approach_data'].apply(extract_close_approach_date)
@@ -68,6 +82,5 @@ cur.execute("UPDATE load_tracking_unified SET last_load_date = %s", (max_date,))
 # Close the cursor and connection
 cur.close()
 conn.close()
-
 
 print("Unified data successfully loaded into Snowflake")
